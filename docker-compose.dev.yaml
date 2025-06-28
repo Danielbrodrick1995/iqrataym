@@ -28,7 +28,7 @@ services:
       - AZURE_API_BASE=${AZURE_API_BASE}
       - AZURE_API_VERSION=${AZURE_API_VERSION}
 
-      - OPENAI_MODE=${OPENAI_MODE}
+      - OPENAI_MODE=${OPENAI_MODE:-openai}
 
       - CUSTOM_MODEL=${CUSTOM_MODEL}
 
@@ -44,7 +44,7 @@ services:
       /bin/sh -c "
         cd /workspace/src/backend &&
         alembic upgrade head &&
-        uvicorn main:app --host 0.0.0.0 --port 8000
+        uvicorn main:app --host 0.0.0.0 --port 8000 --reload
       "
     develop:
       watch:
